@@ -1,6 +1,6 @@
 # Testing Guide
 
-Complete guide for testing the Diet Tracker application.
+Complete guide for testing the FuelSync application.
 
 ## Manual Testing
 

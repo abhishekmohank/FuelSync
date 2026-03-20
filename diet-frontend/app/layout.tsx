@@ -3,7 +3,7 @@ import { Providers } from '@/app/providers';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Diet Tracker',
+  title: 'FuelSync',
   description: 'AI-powered diet tracking application',
 };
 

@@ -1,6 +1,6 @@
 # 📋 Project Files Manifest
 
-Complete list of all files created for the Diet Tracker application.
+Complete list of all files created for the FuelSync application.
 
 ## 📄 Documentation Files (Root)
 

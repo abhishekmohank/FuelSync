@@ -1,9 +1,9 @@
 @echo off
-REM Diet Tracker - Full Stack Application Builder (Windows)
+REM FuelSync - Full Stack Application Builder (Windows)
 REM This script helps set up both backend and frontend
 
 echo.
-echo 🎯 Diet Tracker - Setup Script
+echo 🎯 FuelSync - Setup Script
 echo ================================
 echo.
 

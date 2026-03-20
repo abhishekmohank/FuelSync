@@ -24,7 +24,7 @@ mongoose.connect(process.env.MONGODB_URI)
 // Root endpoint
 app.get('/', (req, res) => {
   res.json({
-    message: 'Diet Tracker API',
+    message: 'FuelSync API',
     version: '1.0.0',
     endpoints: {
       health: '/api/health',

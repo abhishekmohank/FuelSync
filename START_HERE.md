@@ -1,4 +1,4 @@
-# 🎉 Diet Tracker - Project Complete!
+# 🎉 FuelSync - Project Complete!
 
 **Status: ✅ PRODUCTION-READY**
 
@@ -249,7 +249,7 @@ NODE_ENV=development
 ### Frontend (.env.local)
 ```env
 NEXT_PUBLIC_API_URL=http://localhost:5000/api
-NEXT_PUBLIC_APP_NAME=Diet Tracker
+NEXT_PUBLIC_APP_NAME=FuelSync
 ```
 
 **Already have accounts?**

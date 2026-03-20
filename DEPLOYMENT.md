@@ -1,6 +1,6 @@
 # Deployment Guide
 
-This guide covers deploying the Diet Tracker application to production.
+This guide covers deploying the FuelSync application to production.
 
 ## Prerequisites
 
@@ -47,7 +47,7 @@ cd diet-backend
    - Authorize Render
 
 5. Configure the Web Service:
-   - **Name:** `diet-tracker-backend`
+   - **Name:** `fuelsync-backend`
    - **Environment:** `Node`
    - **Build Command:** `npm install`
    - **Start Command:** `node server.js`
@@ -57,7 +57,7 @@ cd diet-backend
 6. Add Environment Variables:
    Click "Add Secret File" and set:
    ```env
-   MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/diet_tracker
+   MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/fuelsync
    JWT_SECRET=your_super_secret_key_here_must_be_long
    OPENAI_API_KEY=sk-your-openai-api-key-here
    PORT=5000
@@ -67,7 +67,7 @@ cd diet-backend
 
 7. Click "Create Web Service"
 8. Wait for deployment (5-10 minutes)
-9. Get your backend URL from Render dashboard (e.g., `https://diet-tracker-backend.onrender.com`)
+9. Get your backend URL from Render dashboard (e.g., `https://fuelsync-backend.onrender.com`)
 
 ### 3. Keep Backend Alive
 
@@ -102,19 +102,19 @@ node_modules/
    - Vercel will auto-detect Next.js
 
 5. Configure Project:
-   - **Project Name:** `diet-tracker`
+   - **Project Name:** `fuelsync`
    - **Root Directory:** `diet-frontend`
    - **Framework Preset:** `Next.js`
 
 6. Add Environment Variables:
    ```
    NEXT_PUBLIC_API_URL=https://your-backend-url.onrender.com/api
-   NEXT_PUBLIC_APP_NAME=Diet Tracker
+   NEXT_PUBLIC_APP_NAME=FuelSync
    ```
 
 7. Click "Deploy"
 8. Wait for deployment (2-3 minutes)
-9. Get your frontend URL from Vercel (e.g., `https://diet-tracker.vercel.app`)
+9. Get your frontend URL from Vercel (e.g., `https://fuelsync.vercel.app`)
 
 ### 3. Update Backend FRONTEND_URL
 

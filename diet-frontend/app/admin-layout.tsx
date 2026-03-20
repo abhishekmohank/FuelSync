@@ -53,7 +53,7 @@ export default function AdminLayout({
       {/* Sidebar */}
       <nav className={`${sidebarOpen ? 'w-64' : 'w-20'} bg-gradient-to-b from-gray-900 to-gray-800 text-white p-4 shadow-lg transition-all duration-300 fixed h-screen overflow-y-auto z-40`}>
         <div className="flex items-center justify-between mb-8">
-          {sidebarOpen && <h1 className="text-2xl font-bold">📊 Diet Tracker</h1>}
+          {sidebarOpen && <h1 className="text-2xl font-bold">📊 FuelSync</h1>}
           <button
             onClick={() => setSidebarOpen(!sidebarOpen)}
             className="p-2 hover:bg-gray-700 rounded transition"

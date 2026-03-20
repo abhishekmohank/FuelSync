@@ -1,4 +1,4 @@
-# Diet Tracker - Architecture Overview
+# FuelSync - Architecture Overview
 
 ## System Architecture
 

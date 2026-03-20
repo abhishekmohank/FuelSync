@@ -1,6 +1,6 @@
 # Quick Start Guide
 
-Get the Diet Tracker application running locally in minutes!
+Get the FuelSync application running locally in minutes!
 
 ## 🚀 5-Minute Setup
 
@@ -74,7 +74,7 @@ npm run dev
 
 ### Backend `.env`
 ```env
-MONGODB_URI=mongodb+srv://user:pass@cluster.mongodb.net/diet_tracker
+MONGODB_URI=mongodb+srv://user:pass@cluster.mongodb.net/fuelsync
 JWT_SECRET=any_secret_key_for_testing
 OPENAI_API_KEY=sk-...
 PORT=5000
@@ -85,7 +85,7 @@ NODE_ENV=development
 ### Frontend `.env.local`
 ```env
 NEXT_PUBLIC_API_URL=http://localhost:5000/api
-NEXT_PUBLIC_APP_NAME=Diet Tracker
+NEXT_PUBLIC_APP_NAME=FuelSync
 ```
 
 ## 🎯 Key Features to Try

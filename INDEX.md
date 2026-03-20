@@ -281,7 +281,7 @@ FRONTEND_URL=http://localhost:3000
 **Frontend** (.env.local)
 ```
 NEXT_PUBLIC_API_URL=http://localhost:5000/api
-NEXT_PUBLIC_APP_NAME=Diet Tracker
+NEXT_PUBLIC_APP_NAME=FuelSync
 ```
 
 ---

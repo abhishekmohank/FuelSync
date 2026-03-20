@@ -1,4 +1,4 @@
-# Diet Tracker - AI-Powered Fitness & Diet Tracking Application
+# FuelSync - AI-Powered Fitness & Diet Tracking Application
 
 A full-stack web application for tracking fitness and diet goals with AI-powered food detection using OpenAI Vision API.
 
@@ -148,7 +148,7 @@ diet/
 
 4. **Update `.env` with your credentials:**
    ```env
-   MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/diet_tracker
+   MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/fuelsync
    JWT_SECRET=your_super_secret_key_here_min_32_chars
    OPENAI_API_KEY=sk-your-openai-api-key-here
    PORT=5000
@@ -185,7 +185,7 @@ diet/
 4. **Update `.env.local`:**
    ```env
    NEXT_PUBLIC_API_URL=http://localhost:5000/api
-   NEXT_PUBLIC_APP_NAME=Diet Tracker
+   NEXT_PUBLIC_APP_NAME=FuelSync
    ```
 
 5. **Start the frontend development server:**
@@ -267,7 +267,7 @@ NEXT_PUBLIC_APP_NAME=     # Application name
 
 **Backend (Render):**
 ```env
-MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/diet_tracker
+MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/fuelsync
 JWT_SECRET=your_secure_random_key_here
 OPENAI_API_KEY=sk-your-openai-key
 PORT=5000

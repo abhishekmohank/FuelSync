@@ -2,7 +2,7 @@ export default function Home() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-600 to-blue-800">
       <div className="text-center text-white">
-        <h1 className="text-5xl font-bold mb-4">🎯 Diet Tracker</h1>
+        <h1 className="text-5xl font-bold mb-4">🎯 FuelSync</h1>
         <p className="text-xl mb-8">AI-Powered Fitness & Diet Tracking</p>
         <div className="space-y-4">
           <a

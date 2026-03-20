@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# Diet Tracker - Full Stack Application Builder
+# FuelSync - Full Stack Application Builder
 # This script helps set up both backend and frontend
 
-echo "🎯 Diet Tracker - Setup Script"
+echo "🎯 FuelSync - Setup Script"
 echo "================================"
 echo ""
 

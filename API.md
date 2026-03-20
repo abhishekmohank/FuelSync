@@ -1,6 +1,6 @@
 # API Documentation
 
-Complete REST API documentation for the Diet Tracker backend.
+Complete REST API documentation for the FuelSync backend.
 
 ## Base URL
 
