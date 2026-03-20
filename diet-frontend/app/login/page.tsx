@@ -36,10 +36,10 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900 px-4">
+      <div className="w-full max-w-md rounded-2xl border border-blue-800/50 bg-slate-900/80 p-8 shadow-2xl backdrop-blur">
         <div className="mb-6 flex justify-center">
-          <BrandLogo size={300} textClassName="text-3xl font-bold" variant="light" />
+          <BrandLogo size={300} textClassName="text-3xl font-bold" variant="dark" />
         </div>
 
         {error && (
@@ -50,22 +50,22 @@ export default function LoginPage() {
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium mb-1">Email</label>
+            <label className="mb-1 block text-sm font-medium text-blue-100">Email</label>
             <input
               {...register('email', { required: 'Email is required' })}
               type="email"
-              className="w-full border rounded-lg px-4 py-2"
+              className="w-full rounded-lg border border-blue-800 bg-slate-950/70 px-4 py-2 text-white placeholder:text-slate-400 focus:border-blue-500 focus:outline-none"
               placeholder="you@example.com"
             />
             {errors.email && <p className="text-red-600 text-sm">{errors.email.message}</p>}
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-1">Password</label>
+            <label className="mb-1 block text-sm font-medium text-blue-100">Password</label>
             <input
               {...register('password', { required: 'Password is required' })}
               type="password"
-              className="w-full border rounded-lg px-4 py-2"
+              className="w-full rounded-lg border border-blue-800 bg-slate-950/70 px-4 py-2 text-white placeholder:text-slate-400 focus:border-blue-500 focus:outline-none"
               placeholder="••••••••"
             />
             {errors.password && <p className="text-red-600 text-sm">{errors.password.message}</p>}
@@ -74,15 +74,15 @@ export default function LoginPage() {
           <button
             type="submit"
             disabled={isLoading}
-            className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 disabled:opacity-50"
+            className="w-full rounded-lg bg-blue-600 py-2 text-white transition hover:bg-blue-500 disabled:opacity-50"
           >
             {isLoading ? 'Logging in...' : 'Login'}
           </button>
         </form>
 
-        <p className="text-center mt-4">
+        <p className="mt-4 text-center text-blue-100">
           Don't have an account?{' '}
-          <a href="/register" className="text-blue-600 hover:underline">
+          <a href="/register" className="text-blue-300 hover:text-blue-200 hover:underline">
             Sign up
           </a>
         </p>
