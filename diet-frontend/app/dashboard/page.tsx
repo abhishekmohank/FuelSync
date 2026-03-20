@@ -106,6 +106,30 @@ export default function DashboardPage() {
         goals={goals}
       />
 
+      {/* Food Checklist */}
+      <div className="card">
+        <h3 className="text-lg font-semibold">Food Checklist</h3>
+        <ol className="mt-3 list-decimal list-inside text-sm text-gray-700 space-y-1">
+          <li>Calories (kcal)</li>
+          <li>Protein</li>
+          <li>Carbohydrates (carbs)</li>
+          <li>Fats</li>
+          <li>Fiber</li>
+          <li>Sugar</li>
+          <li>Sodium (salt)</li>
+          <li>Vitamins &amp; Minerals</li>
+        </ol>
+
+        <h4 className="text-sm font-semibold mt-4">Quick Check (simple version)</h4>
+        <ul className="mt-2 list-disc list-inside text-sm text-gray-700 space-y-1">
+          <li>Calories?</li>
+          <li>Protein?</li>
+          <li>High sugar?</li>
+          <li>High oil/fat?</li>
+          <li>Has fiber (veggies/fruits)?</li>
+        </ul>
+      </div>
+
       {/* Add Food Button */}
       <div className="text-center">
         <button

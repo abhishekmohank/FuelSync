@@ -104,6 +104,23 @@ Follow [DEPLOYMENT.md](./DEPLOYMENT.md) to deploy:
 - Date-based organization
 - Edit/delete capabilities
 
+#### Food Checklist
+1. Calories (kcal)
+2. Protein
+3. Carbohydrates (carbs)
+4. Fats
+5. Fiber
+6. Sugar
+7. Sodium (salt)
+8. Vitamins & Minerals
+
+#### Quick Check (Simple Version)
+- Calories?
+- Protein?
+- High sugar?
+- High oil/fat?
+- Has fiber (veggies/fruits)?
+
 ### Goals Management ✅
 - Daily goal setting (Calories, Protein, Carbs, Fat)
 - Goal updates anytime

@@ -68,7 +68,7 @@ export default function QuickAddFood({ onClose }: QuickAddFoodProps) {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white p-8 rounded-lg max-w-md w-full">
+      <div className="bg-white p-8 rounded-lg max-w-md w-full max-h-[90vh] overflow-y-auto">
         <h2 className="text-2xl font-bold mb-4">Add Food</h2>
 
         <div className="flex gap-2 mb-4">
@@ -173,6 +173,29 @@ export default function QuickAddFood({ onClose }: QuickAddFoodProps) {
             </button>
           </div>
         </form>
+
+        <div className="mt-6 border-t pt-4">
+          <h3 className="text-sm font-semibold text-gray-900">FOOD CHECKLIST</h3>
+          <ol className="mt-2 list-decimal list-inside text-sm text-gray-700 space-y-1">
+            <li>Calories (kcal)</li>
+            <li>Protein</li>
+            <li>Carbohydrates (carbs)</li>
+            <li>Fats</li>
+            <li>Fiber</li>
+            <li>Sugar</li>
+            <li>Sodium (salt)</li>
+            <li>Vitamins &amp; Minerals</li>
+          </ol>
+
+          <h3 className="text-sm font-semibold text-gray-900 mt-4">QUICK CHECK (simple version)</h3>
+          <ul className="mt-2 list-disc list-inside text-sm text-gray-700 space-y-1">
+            <li>Calories?</li>
+            <li>Protein?</li>
+            <li>High sugar?</li>
+            <li>High oil/fat?</li>
+            <li>Has fiber (veggies/fruits)?</li>
+          </ul>
+        </div>
       </div>
     </div>
   );

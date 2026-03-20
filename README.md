@@ -20,6 +20,23 @@ A full-stack web application for tracking fitness and diet goals with AI-powered
 - ✅ Auto-fill nutritional values from detected food
 - ✅ View/edit/delete food entries
 
+#### Food Checklist
+1. Calories (kcal)
+2. Protein
+3. Carbohydrates (carbs)
+4. Fats
+5. Fiber
+6. Sugar
+7. Sodium (salt)
+8. Vitamins & Minerals
+
+#### Quick Check (Simple Version)
+- Calories?
+- Protein?
+- High sugar?
+- High oil/fat?
+- Has fiber (veggies/fruits)?
+
 ### Dashboard
 - ✅ Real-time progress bars for calories and protein
 - ✅ Smart insights and recommendations
