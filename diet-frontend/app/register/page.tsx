@@ -42,7 +42,7 @@ export default function RegisterPage() {
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
         <div className="mb-3 flex justify-center">
-          <BrandLogo size={52} textClassName="text-3xl font-bold" variant="light" />
+          <BrandLogo size={300} textClassName="text-3xl font-bold" variant="light" />
         </div>
         <h2 className="text-xl font-semibold mb-6 text-center text-gray-700">Create Account</h2>
 

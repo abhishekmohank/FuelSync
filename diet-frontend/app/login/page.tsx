@@ -39,7 +39,7 @@ export default function LoginPage() {
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
         <div className="mb-6 flex justify-center">
-          <BrandLogo size={56} textClassName="text-3xl font-bold" variant="light" />
+          <BrandLogo size={300} textClassName="text-3xl font-bold" variant="light" />
         </div>
 
         {error && (

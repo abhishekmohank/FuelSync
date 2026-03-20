@@ -5,7 +5,7 @@ export default function Home() {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-600 to-blue-800">
       <div className="text-center text-white">
         <div className="mb-4 flex justify-center">
-          <BrandLogo size={84} textClassName="text-5xl font-bold text-white" variant="dark" />
+          <BrandLogo size={300} textClassName="text-5xl font-bold text-white" variant="dark" />
         </div>
         <p className="text-xl mb-8">AI-Powered Fitness & Diet Tracking</p>
         <div className="space-y-4">

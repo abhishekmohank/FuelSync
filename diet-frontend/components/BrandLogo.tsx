@@ -10,12 +10,12 @@ interface BrandLogoProps {
 
 export default function BrandLogo({
   size = 40,
-  withText = true,
+  withText = false,
   textClassName = 'text-2xl font-bold',
   className = '',
   variant = 'light',
 }: BrandLogoProps) {
-  const logoSrc = variant === 'dark' ? '/logo-white.svg' : '/logo-black.svg';
+  const logoSrc = '/logos/logowhitebg%20remove.png';
   
   return (
     <div className={`inline-flex items-center gap-3 ${className}`}>
