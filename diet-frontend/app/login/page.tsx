@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { auth } from '@/utils/api';
 import { useAuthStore } from '@/utils/store';
+import BrandLogo from '@/components/BrandLogo';
 
 interface LoginFormData {
   email: string;
@@ -37,7 +38,9 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
-        <h1 className="text-3xl font-bold mb-6 text-center">FuelSync</h1>
+        <div className="mb-6 flex justify-center">
+          <BrandLogo size={56} textClassName="text-3xl font-bold" variant="light" />
+        </div>
 
         {error && (
           <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">

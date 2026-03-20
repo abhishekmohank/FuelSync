@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter, usePathname } from 'next/navigation';
 import { useAuthStore, useThemeStore } from '@/utils/store';
+import BrandLogo from '@/components/BrandLogo';
 import './admin-layout.css';
 
 export default function AdminLayout({
@@ -53,7 +54,7 @@ export default function AdminLayout({
       {/* Sidebar */}
       <nav className={`${sidebarOpen ? 'w-64' : 'w-20'} bg-gradient-to-b from-gray-900 to-gray-800 text-white p-4 shadow-lg transition-all duration-300 fixed h-screen overflow-y-auto z-40`}>
         <div className="flex items-center justify-between mb-8">
-          {sidebarOpen && <h1 className="text-2xl font-bold">📊 FuelSync</h1>}
+          {sidebarOpen && <BrandLogo size={34} textClassName="text-2xl font-bold text-white" variant="dark" />}
           <button
             onClick={() => setSidebarOpen(!sidebarOpen)}
             className="p-2 hover:bg-gray-700 rounded transition"
@@ -86,7 +87,10 @@ export default function AdminLayout({
       <main className={`${sidebarOpen ? 'ml-64' : 'ml-20'} flex-1 transition-all duration-300`}>
         {/* Header */}
         <header className="bg-white shadow sticky top-0 z-30 px-8 py-4 flex justify-between items-center">
-          <h2 className="text-xl font-semibold text-gray-800">Welcome, {user?.name}! 👋</h2>
+          <div className="flex items-center gap-3">
+            <BrandLogo size={28} withText={false} variant="light" />
+            <h2 className="text-xl font-semibold text-gray-800">Welcome, {user?.name}! 👋</h2>
+          </div>
           <div className="flex items-center gap-4">
             <button
               onClick={toggleTheme}
