@@ -1,0 +1,32 @@
+/* Admin Layout Styles */
+.admin-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.admin-sidebar {
+  transition: all 0.3s ease;
+}
+
+.admin-main {
+  flex: 1;
+  transition: margin-left 0.3s ease;
+}
+
+.admin-header {
+  background: linear-gradient(to right, #ffffff, #f9fafb);
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.admin-content {
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

@@ -1,0 +1,97 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+:root {
+  --app-bg: #f3f4f6;
+  --app-text: #111827;
+  --app-surface: #ffffff;
+  --app-muted: #6b7280;
+  --app-border: #e5e7eb;
+  --app-overlay: rgba(15, 23, 42, 0.55);
+}
+
+[data-theme='dark'] {
+  --app-bg: #0b1220;
+  --app-text: #e5e7eb;
+  --app-surface: #111827;
+  --app-muted: #9ca3af;
+  --app-border: #1f2937;
+  --app-overlay: rgba(2, 6, 23, 0.72);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--app-bg);
+  color: var(--app-text);
+}
+
+/* Shared theme overrides for existing utility-heavy pages */
+[data-theme='dark'] .bg-gray-50,
+[data-theme='dark'] .bg-gray-100 {
+  background-color: var(--app-bg) !important;
+}
+
+[data-theme='dark'] .bg-white {
+  background-color: var(--app-surface) !important;
+}
+
+[data-theme='dark'] .text-gray-800,
+[data-theme='dark'] .text-gray-700,
+[data-theme='dark'] .text-gray-600 {
+  color: var(--app-muted) !important;
+}
+
+[data-theme='dark'] .border,
+[data-theme='dark'] .border-gray-300,
+[data-theme='dark'] .border-gray-400 {
+  border-color: var(--app-border) !important;
+}
+
+[data-theme='dark'] input,
+[data-theme='dark'] select,
+[data-theme='dark'] textarea {
+  background-color: #0f172a !important;
+  color: var(--app-text) !important;
+  border-color: var(--app-border) !important;
+}
+
+[data-theme='dark'] ::placeholder {
+  color: #6b7280;
+}
+
+[data-theme='dark'] .card {
+  background: var(--app-surface);
+  color: var(--app-text);
+  border: 1px solid var(--app-border);
+}
+
+[data-theme='dark'] .progress-bar {
+  background-color: #1f2937;
+}
+
+[data-theme='dark'] .fixed.inset-0.bg-black {
+  background-color: var(--app-overlay) !important;
+}
+
+.progress-bar {
+  @apply w-full bg-gray-200 rounded-full h-4 overflow-hidden;
+}
+
+.progress-fill {
+  @apply h-full bg-green-500 transition-all duration-300;
+}
+
+.card {
+  @apply bg-white rounded-lg shadow-md p-6;
+}
