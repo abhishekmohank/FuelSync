@@ -68,6 +68,7 @@ export default function AdminLayout({
           <NavLink href="/food-log" icon="🍽️" label="Food Log" open={sidebarOpen} active={pathname.startsWith('/food-log')} />
           <NavLink href="/analytics" icon="📈" label="Analytics" open={sidebarOpen} active={pathname.startsWith('/analytics')} />
           <NavLink href="/goals" icon="🎯" label="Goals" open={sidebarOpen} active={pathname.startsWith('/goals')} />
+          <NavLink href="/assistant" icon="💬" label="Nutrition Chat" open={sidebarOpen} active={pathname.startsWith('/assistant')} />
         </div>
 
         <div className="mt-8 pt-8 border-t border-gray-700">

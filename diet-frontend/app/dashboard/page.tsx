@@ -27,6 +27,55 @@ interface DailyData {
   totals: { calories: number; protein: number; carbs: number; fat: number };
 }
 
+interface GoalMetricCardProps {
+  title: string;
+  icon: string;
+  current: number;
+  goal: number;
+  unit: string;
+}
+
+function GoalMetricCard({ title, icon, current, goal, unit }: GoalMetricCardProps) {
+  const isDecimal = unit === 'g';
+  const currentValue = isDecimal ? current.toFixed(1) : Math.round(current);
+  const goalValue = isDecimal ? goal.toFixed(1) : Math.round(goal);
+  const diff = goal - current;
+
+  return (
+    <div className="card">
+      <h3 className="text-lg font-semibold mb-4">{icon} {title}</h3>
+      <p className="text-3xl font-bold mb-2">
+        {currentValue} / {goalValue} {unit}
+      </p>
+      <ProgressBar current={current} goal={goal} />
+      <p className="text-sm text-gray-600 mt-2">
+        {diff > 0
+          ? `${isDecimal ? diff.toFixed(1) : Math.round(diff)} ${unit} remaining`
+          : `${isDecimal ? Math.abs(diff).toFixed(1) : Math.round(Math.abs(diff))} ${unit} over`}
+      </p>
+    </div>
+  );
+}
+
+interface PendingMetricCardProps {
+  title: string;
+  icon: string;
+  note: string;
+}
+
+function PendingMetricCard({ title, icon, note }: PendingMetricCardProps) {
+  return (
+    <div className="card">
+      <h3 className="text-lg font-semibold mb-4">{icon} {title}</h3>
+      <p className="text-3xl font-bold mb-2">Not tracked</p>
+      <div className="w-full bg-gray-200 rounded-full h-4 overflow-hidden">
+        <div className="h-full w-1/4 bg-gray-300" />
+      </div>
+      <p className="text-sm text-gray-600 mt-2">{note}</p>
+    </div>
+  );
+}
+
 export default function DashboardPage() {
   const [goals, setGoals] = useState<Goals | null>(null);
   const [dailyData, setDailyData] = useState<DailyData | null>(null);
@@ -66,38 +115,62 @@ export default function DashboardPage() {
       <h1 className="text-3xl font-bold">Today's Progress</h1>
 
       {/* Goals Progress Cards */}
-      <div className="grid grid-cols-2 gap-6">
-        <div className="card">
-          <h3 className="text-lg font-semibold mb-4">🔥 Calories</h3>
-          <p className="text-3xl font-bold mb-2">
-            {dailyData.totals.calories} / {goals.calories} kcal
-          </p>
-          <ProgressBar
-            current={dailyData.totals.calories}
-            goal={goals.calories}
-          />
-          <p className="text-sm text-gray-600 mt-2">
-            {goals.calories - dailyData.totals.calories > 0
-              ? `${goals.calories - dailyData.totals.calories} kcal remaining`
-              : `${Math.abs(goals.calories - dailyData.totals.calories)} kcal over`}
-          </p>
-        </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <GoalMetricCard
+          title="Calories"
+          icon="🔥"
+          current={dailyData.totals.calories}
+          goal={goals.calories}
+          unit="kcal"
+        />
 
-        <div className="card">
-          <h3 className="text-lg font-semibold mb-4">💪 Protein</h3>
-          <p className="text-3xl font-bold mb-2">
-            {dailyData.totals.protein.toFixed(1)} / {goals.protein} g
-          </p>
-          <ProgressBar
-            current={dailyData.totals.protein}
-            goal={goals.protein}
-          />
-          <p className="text-sm text-gray-600 mt-2">
-            {goals.protein - dailyData.totals.protein > 0
-              ? `${(goals.protein - dailyData.totals.protein).toFixed(1)} g remaining`
-              : `${(Math.abs(goals.protein - dailyData.totals.protein)).toFixed(1)} g over`}
-          </p>
-        </div>
+        <GoalMetricCard
+          title="Protein"
+          icon="💪"
+          current={dailyData.totals.protein}
+          goal={goals.protein}
+          unit="g"
+        />
+
+        <GoalMetricCard
+          title="Carbohydrates"
+          icon="🌾"
+          current={dailyData.totals.carbs}
+          goal={goals.carbs}
+          unit="g"
+        />
+
+        <GoalMetricCard
+          title="Fats"
+          icon="🥑"
+          current={dailyData.totals.fat}
+          goal={goals.fat}
+          unit="g"
+        />
+
+        <PendingMetricCard
+          title="Fiber"
+          icon="🥬"
+          note="Add more veggie and fruit entries to estimate this reliably."
+        />
+
+        <PendingMetricCard
+          title="Sugar"
+          icon="🍬"
+          note="Sugar tracking will be enabled once detailed nutrition fields are added."
+        />
+
+        <PendingMetricCard
+          title="Sodium (Salt)"
+          icon="🧂"
+          note="Sodium goals are not configured yet."
+        />
+
+        <PendingMetricCard
+          title="Vitamins & Minerals"
+          icon="💊"
+          note="Micronutrient tracking is planned in a future update."
+        />
       </div>
 
       {/* Quick Insights */}
@@ -105,30 +178,6 @@ export default function DashboardPage() {
         dailyTotals={dailyData.totals}
         goals={goals}
       />
-
-      {/* Food Checklist */}
-      <div className="card">
-        <h3 className="text-lg font-semibold">Food Checklist</h3>
-        <ol className="mt-3 list-decimal list-inside text-sm text-gray-700 space-y-1">
-          <li>Calories (kcal)</li>
-          <li>Protein</li>
-          <li>Carbohydrates (carbs)</li>
-          <li>Fats</li>
-          <li>Fiber</li>
-          <li>Sugar</li>
-          <li>Sodium (salt)</li>
-          <li>Vitamins &amp; Minerals</li>
-        </ol>
-
-        <h4 className="text-sm font-semibold mt-4">Quick Check (simple version)</h4>
-        <ul className="mt-2 list-disc list-inside text-sm text-gray-700 space-y-1">
-          <li>Calories?</li>
-          <li>Protein?</li>
-          <li>High sugar?</li>
-          <li>High oil/fat?</li>
-          <li>Has fiber (veggies/fruits)?</li>
-        </ul>
-      </div>
 
       {/* Add Food Button */}
       <div className="text-center">

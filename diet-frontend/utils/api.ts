@@ -35,4 +35,9 @@ export const food = {
   updateFood: (id: string, data: any) => apiClient.put(`/food/${id}`, data),
 };
 
+export const chat = {
+  askNutrition: (messages: Array<{ role: 'user' | 'assistant'; content: string }>) =>
+    apiClient.post('/chat/nutrition', { messages }),
+};
+
 export default apiClient;

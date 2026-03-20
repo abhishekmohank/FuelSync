@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/user');
 const foodRoutes = require('./routes/food');
+const chatRoutes = require('./routes/chat');
 
 const app = express();
 
@@ -30,7 +31,8 @@ app.get('/', (req, res) => {
       health: '/api/health',
       auth: '/api/auth',
       user: '/api/user',
-      food: '/api/food'
+      food: '/api/food',
+      chat: '/api/chat'
     }
   });
 });
@@ -39,6 +41,7 @@ app.get('/', (req, res) => {
 app.use('/api/auth', authRoutes);
 app.use('/api/user', userRoutes);
 app.use('/api/food', foodRoutes);
+app.use('/api/chat', chatRoutes);
 
 // Health check
 app.get('/api/health', (req, res) => {

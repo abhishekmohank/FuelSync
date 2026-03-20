@@ -51,6 +51,39 @@ Provide only the JSON object, no additional text.`,
   }
 };
 
+const askNutritionAssistant = async (messages) => {
+  try {
+    const safeMessages = Array.isArray(messages)
+      ? messages
+          .filter((msg) => msg && typeof msg.content === 'string' && msg.content.trim())
+          .map((msg) => ({
+            role: msg.role === 'assistant' ? 'assistant' : 'user',
+            content: msg.content.trim(),
+          }))
+      : [];
+
+    const response = await openai.createChatCompletion({
+      model: 'gpt-4o-mini',
+      messages: [
+        {
+          role: 'system',
+          content:
+            'You are a nutrition-focused assistant for a fitness app. Provide practical guidance about calories, protein, carbs, fats, fiber, sugar, sodium, vitamins and minerals. Mention medical caution when needed. Never provide diagnosis, emergency care instructions, or medication dosing. Encourage consulting a licensed clinician for medical conditions.',
+        },
+        ...safeMessages,
+      ],
+      max_tokens: 500,
+      temperature: 0.4,
+    });
+
+    return response.data.choices[0].message.content;
+  } catch (error) {
+    console.error('Error in nutrition assistant chat:', error);
+    throw error;
+  }
+};
+
 module.exports = {
   detectFoodFromImage,
+  askNutritionAssistant,
 };
