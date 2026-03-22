@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { auth } from '@/utils/api';
 import { useAuthStore } from '@/utils/store';
+import { safeStorage } from '@/utils/storage';
 import BrandLogo from '@/components/BrandLogo';
 
 interface RegisterFormData {
@@ -30,7 +31,7 @@ export default function RegisterPage() {
       setToken(response.data.token);
       setUser(response.data.user);
       try {
-        localStorage.setItem('user', JSON.stringify(response.data.user));
+        safeStorage.setItem('user', JSON.stringify(response.data.user));
       } catch (storageError) {
         console.warn('Could not persist user to storage, session will be in-memory only', storageError);
       }

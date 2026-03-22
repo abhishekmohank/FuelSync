@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { safeStorage } from './storage';
 
 interface User {
   id: string;
@@ -33,33 +34,33 @@ export const useAuthStore = create<AuthStore>((set) => ({
   setToken: (token) => {
     try {
       if (token) {
-        localStorage.setItem('token', token);
+        safeStorage.setItem('token', token);
       } else {
-        localStorage.removeItem('token');
+        safeStorage.removeItem('token');
       }
     } catch (error) {
-      console.warn('localStorage unavailable, session will not persist', error);
+      console.warn('Storage unavailable, session will not persist', error);
     }
     set({ token });
   },
   logout: () => {
     try {
-      localStorage.removeItem('token');
-      localStorage.removeItem('user');
+      safeStorage.removeItem('token');
+      safeStorage.removeItem('user');
     } catch (error) {
-      console.warn('localStorage unavailable during logout', error);
+      console.warn('Storage unavailable during logout', error);
     }
     set({ user: null, token: null, isAuthenticated: false });
   },
   setFromStorage: () => {
     try {
-      const token = localStorage.getItem('token');
-      const user = localStorage.getItem('user');
+      const token = safeStorage.getItem('token');
+      const user = safeStorage.getItem('user');
       if (token && user) {
         set({ token, user: JSON.parse(user), isAuthenticated: true });
       }
     } catch (error) {
-      console.warn('localStorage unavailable during initialization', error);
+      console.warn('Storage unavailable during initialization', error);
     }
   },
 }));
@@ -74,12 +75,12 @@ export const useThemeStore = create<ThemeStore>((set, get) => ({
   initializeTheme: () => {
     if (typeof window === 'undefined') return;
     try {
-      const savedTheme = localStorage.getItem('theme') as ThemeMode | null;
+      const savedTheme = safeStorage.getItem('theme') as ThemeMode | null;
       const theme = savedTheme === 'dark' ? 'dark' : 'light';
       applyTheme(theme);
       set({ theme });
     } catch (error) {
-      console.warn('localStorage unavailable for theme, using default', error);
+      console.warn('Storage unavailable for theme, using default', error);
       applyTheme('light');
       set({ theme: 'light' });
     }
@@ -87,9 +88,9 @@ export const useThemeStore = create<ThemeStore>((set, get) => ({
   setTheme: (theme) => {
     if (typeof window !== 'undefined') {
       try {
-        localStorage.setItem('theme', theme);
+        safeStorage.setItem('theme', theme);
       } catch (error) {
-        console.warn('localStorage unavailable for theme persist', error);
+        console.warn('Storage unavailable for theme persist', error);
       }
     }
     applyTheme(theme);
