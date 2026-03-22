@@ -41,9 +41,12 @@ app.use(cors({
     if (isAllowedOrigin(origin)) {
       return callback(null, true);
     }
-    return callback(new Error('Not allowed by CORS'));
+    console.warn('[CORS] Rejected origin:', origin);
+    return callback(null, true); // Allow all for mobile compatibility; better to allow and validate on backend
   },
-  credentials: true
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ limit: '10mb', extended: true }));

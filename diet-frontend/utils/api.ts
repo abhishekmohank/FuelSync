@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { safeStorage } from './storage';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
 
@@ -8,7 +9,7 @@ const apiClient = axios.create({
 
 // Add token to requests
 apiClient.interceptors.request.use((config) => {
-  const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
+  const token = typeof window !== 'undefined' ? safeStorage.getItem('token') : null;
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }

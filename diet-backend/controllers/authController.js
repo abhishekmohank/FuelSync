@@ -57,16 +57,19 @@ const login = async (req, res) => {
 
     const user = await User.findOne({ email });
     if (!user) {
+      console.log('[Auth] Login failed: user not found for email', email);
       return res.status(401).json({ error: 'Invalid credentials' });
     }
 
     const isPasswordValid = await user.comparePassword(password);
     if (!isPasswordValid) {
+      console.log('[Auth] Login failed: invalid password for email', email);
       return res.status(401).json({ error: 'Invalid credentials' });
     }
 
     const token = generateToken(user._id);
 
+    console.log('[Auth] Login successful for email', email);
     res.json({
       token,
       user: {
@@ -76,7 +79,8 @@ const login = async (req, res) => {
       },
     });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    console.error('[Auth] Login error:', error);
+    res.status(500).json({ error: error.message || 'Internal server error' });
   }
 };
 
