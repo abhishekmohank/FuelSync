@@ -9,9 +9,40 @@ const chatRoutes = require('./routes/chat');
 
 const app = express();
 
+const normalizeOrigin = (origin) => origin.replace(/\/$/, '');
+const configuredOrigins = [
+  process.env.FRONTEND_URL,
+  ...(process.env.FRONTEND_URLS || '').split(','),
+  'http://localhost:3000',
+  'http://127.0.0.1:3000'
+]
+  .filter(Boolean)
+  .map((origin) => normalizeOrigin(origin.trim()));
+
+const isAllowedOrigin = (origin) => {
+  if (!origin) return true;
+
+  const normalizedOrigin = normalizeOrigin(origin);
+  if (configuredOrigins.includes(normalizedOrigin)) return true;
+
+  // Allow Vercel preview/production domains when not explicitly configured.
+  try {
+    if (/\.vercel\.app$/i.test(new URL(normalizedOrigin).hostname)) return true;
+  } catch (error) {
+    return false;
+  }
+
+  return false;
+};
+
 // Middleware
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+  origin: (origin, callback) => {
+    if (isAllowedOrigin(origin)) {
+      return callback(null, true);
+    }
+    return callback(new Error('Not allowed by CORS'));
+  },
   credentials: true
 }));
 app.use(express.json({ limit: '10mb' }));
