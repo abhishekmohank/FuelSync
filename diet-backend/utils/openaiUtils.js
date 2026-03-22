@@ -6,6 +6,28 @@ const configuration = new Configuration({
 
 const openai = new OpenAIApi(configuration);
 
+const buildFallbackNutritionReply = (question = '') => {
+  const q = question.toLowerCase();
+
+  if (q.includes('protein')) {
+    return 'Quick guide: most active adults target about 1.2-1.8 g protein per kg body weight daily. Spread protein across 3-4 meals and include one protein source in each meal.';
+  }
+
+  if (q.includes('sodium') || q.includes('salt')) {
+    return 'A practical sodium target is usually below 2300 mg/day unless your clinician gives a different goal. Prioritize minimally processed foods and check labels for high-sodium packaged items.';
+  }
+
+  if (q.includes('vitamin') || q.includes('mineral')) {
+    return 'For vitamins and minerals, prioritize variety: leafy greens, legumes, nuts/seeds, dairy or fortified alternatives, fruits, and whole grains. If you follow a restrictive diet, discuss B12, iron, vitamin D, calcium, and omega-3 coverage with a clinician.';
+  }
+
+  if (q.includes('recovery') || q.includes('workout')) {
+    return 'For workout recovery, include protein (20-40 g) plus carbs after training, hydrate well, and include electrolyte-rich foods if you sweat heavily.';
+  }
+
+  return 'Nutrition assistant is temporarily under high demand. General guideline: build meals around lean protein, high-fiber carbs, healthy fats, and vegetables; adjust portions by your goal (fat loss, maintenance, or muscle gain).';
+};
+
 const detectFoodFromImage = async (base64Image) => {
   try {
     const response = await openai.createChatCompletion({
@@ -72,12 +94,22 @@ const askNutritionAssistant = async (messages) => {
         },
         ...safeMessages,
       ],
-      max_tokens: 500,
+      max_tokens: 400,
       temperature: 0.4,
     });
 
     return response.data.choices[0].message.content;
   } catch (error) {
+    const status = error?.response?.status;
+    if (status === 429) {
+      const latestUserMessage =
+        Array.isArray(messages) && messages.length
+          ? [...messages].reverse().find((msg) => msg?.role === 'user' && typeof msg?.content === 'string')
+          : null;
+
+      return buildFallbackNutritionReply(latestUserMessage?.content || '');
+    }
+
     console.error('Error in nutrition assistant chat:', error);
     throw error;
   }
