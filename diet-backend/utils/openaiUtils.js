@@ -1,7 +1,11 @@
 const { Configuration, OpenAIApi } = require('openai');
 
+if (!process.env.OPENAI_API_KEY) {
+  console.warn('Warning: OPENAI_API_KEY is not set. Chat will use fallback responses only.');
+}
+
 const configuration = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY,
+  apiKey: process.env.OPENAI_API_KEY || 'sk-placeholder',
 });
 
 const openai = new OpenAIApi(configuration);
@@ -75,6 +79,10 @@ Provide only the JSON object, no additional text.`,
 
 const askNutritionAssistant = async (messages) => {
   try {
+    if (!process.env.OPENAI_API_KEY) {
+      throw new Error('Nutrition AI disabled (no API key configured)');
+    }
+
     const safeMessages = Array.isArray(messages)
       ? messages
           .filter((msg) => msg && typeof msg.content === 'string' && msg.content.trim())
@@ -101,17 +109,17 @@ const askNutritionAssistant = async (messages) => {
     return response.data.choices[0].message.content;
   } catch (error) {
     const status = error?.response?.status;
-    if (status === 429) {
-      const latestUserMessage =
-        Array.isArray(messages) && messages.length
-          ? [...messages].reverse().find((msg) => msg?.role === 'user' && typeof msg?.content === 'string')
-          : null;
+    const errorMessage = error?.message || 'Unknown error';
 
-      return buildFallbackNutritionReply(latestUserMessage?.content || '');
-    }
+    console.error('OpenAI API error (status:', status, '):', errorMessage);
 
-    console.error('Error in nutrition assistant chat:', error);
-    throw error;
+    // For ANY OpenAI failure, return fallback response
+    const latestUserMessage =
+      Array.isArray(messages) && messages.length
+        ? [...messages].reverse().find((msg) => msg?.role === 'user' && typeof msg?.content === 'string')
+        : null;
+
+    return buildFallbackNutritionReply(latestUserMessage?.content || '');
   }
 };
 
