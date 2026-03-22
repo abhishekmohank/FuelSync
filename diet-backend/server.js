@@ -24,16 +24,14 @@ mongoose.connect(process.env.MONGODB_URI)
 
 // Root endpoint
 app.get('/', (req, res) => {
+  res.send('FuelSync API is live');
+});
+
+// Health checks
+app.get('/health', (req, res) => {
   res.json({
-    message: 'FuelSync API',
-    version: '1.0.0',
-    endpoints: {
-      health: '/api/health',
-      auth: '/api/auth',
-      user: '/api/user',
-      food: '/api/food',
-      chat: '/api/chat'
-    }
+    status: 'OK',
+    message: 'Server is running'
   });
 });
 
@@ -43,9 +41,12 @@ app.use('/api/user', userRoutes);
 app.use('/api/food', foodRoutes);
 app.use('/api/chat', chatRoutes);
 
-// Health check
+// Keep existing API-prefixed health route for compatibility
 app.get('/api/health', (req, res) => {
-  res.json({ status: 'OK', timestamp: new Date() });
+  res.json({
+    status: 'OK',
+    message: 'Server is running'
+  });
 });
 
 // Error handling middleware
