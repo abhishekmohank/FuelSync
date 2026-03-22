@@ -29,7 +29,11 @@ export default function RegisterPage() {
       const response = await auth.register(data);
       setToken(response.data.token);
       setUser(response.data.user);
-      localStorage.setItem('user', JSON.stringify(response.data.user));
+      try {
+        localStorage.setItem('user', JSON.stringify(response.data.user));
+      } catch (storageError) {
+        console.warn('Could not persist user to storage, session will be in-memory only', storageError);
+      }
       router.push('/dashboard');
     } catch (err: any) {
       setError(err.response?.data?.error || 'Registration failed');
