@@ -2,9 +2,11 @@ services:
   - type: web
     name: fuelsync-backend
     runtime: node
+    branch: main
     rootDir: diet-backend
     buildCommand: npm install
     startCommand: node server.js
+    healthCheckPath: /health
     plan: free
     envVars:
       - key: NODE_ENV
